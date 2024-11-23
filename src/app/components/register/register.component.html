@@ -1,0 +1,122 @@
+<div class="container mt-5">
+  <div class="row shadow p-4">
+    <div class="col-12 text-center mb-4 mt-5">
+      <label class="f-20 f-500">
+       <h4> Create Account</h4>
+      </label>
+    </div>
+    <!-- Registration Form -->
+    <div class="col-12 col-md-8 mx-auto" #formContainer>
+      <form #registerForm="ngForm" (ngSubmit)="onRegister()" novalidate>
+        <!-- Name Field -->
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control mt-2"
+            placeholder="Enter Name"
+            [(ngModel)]="registerObj.name"
+            name="name"
+            #name="ngModel"
+            required
+            minlength="5"
+          />
+          <div class="text-danger" *ngIf="name.invalid && name.touched">
+            <span *ngIf="name.errors?.['required']">This is required</span>
+            <span *ngIf="name.errors?.['minlength']">Minimum 5 characters required</span>
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group mt-5">
+          <input
+            type="email"
+            class="form-control mt-2"
+            placeholder="Enter Email"
+            [(ngModel)]="registerObj.email"
+            name="email"
+            #email="ngModel"
+            required
+            email
+          />
+          <div class="text-danger" *ngIf="email.invalid && email.touched">
+            <span *ngIf="email.errors?.['required']">Email is required.</span>
+            <span *ngIf="email.errors?.['email']">Invalid email format.</span>
+          </div>
+        </div>
+
+        <!-- Phone Field -->
+        <div class="form-group mt-5">
+          <input
+            type="text"
+            class="form-control mt-2"
+            placeholder="Enter Phone"
+            [(ngModel)]="registerObj.phone"
+            name="phone"
+            #phone="ngModel"
+            required
+          />
+          <div class="text-danger" *ngIf="phone.invalid && phone.touched">
+            <span *ngIf="phone.errors?.['required']">Phone is required.</span>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group mt-5">
+          <input
+            type="password"
+            class="form-control mt-2"
+            placeholder="Enter Password"
+            [(ngModel)]="registerObj.password"
+            name="password"
+            #password="ngModel"
+            required
+            minlength="6"
+          />
+          <div class="text-danger" *ngIf="password.invalid && password.touched">
+            <span *ngIf="password.errors?.['required']">Password is required.</span>
+            <span *ngIf="password.errors?.['minlength']">Minimum 6 characters required.</span>
+          </div>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group mt-5">
+          <input
+            type="password"
+            class="form-control mt-2"
+            placeholder="Confirm Password"
+            [(ngModel)]="registerObj.confirmPassword"
+            name="confirmPassword"
+            #confirmPassword="ngModel"
+            required
+          />
+          <div class="text-danger" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+            <span *ngIf="confirmPassword.errors?.['required']">Confirm Password is required.</span>
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              registerObj.password &&
+              registerObj.confirmPassword &&
+              registerObj.password !== registerObj.confirmPassword &&
+              confirmPassword.touched
+            "
+          >
+            <span>Passwords do not match.</span>
+          </div>
+        </div>
+
+        <!-- Register Button -->
+       
+        <div class=" col-12 text-center mt-5 mb-5">
+          <button
+            type="submit"
+            class="btn btn-primary ms-1"
+            [disabled]="registerForm.invalid"
+          >
+            Create Account
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

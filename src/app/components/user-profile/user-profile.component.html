@@ -1,0 +1,107 @@
+<div
+  class="d-flex justify-content-center align-items-center vh-100"
+>
+  <div class="p-5 m-4 col-12 col-sm-6 shadow card" style="min-width: 370px; max-width: 600px;">
+    <div class="mb-3 pb-2 text-center">
+      <label class="f-20 f-500">Role: <b>{{ userRole }}</b></label>
+    </div>
+
+    <form (ngSubmit)="submitForm()" class="d-flex flex-column">
+      <div class="row">
+        <!-- Name Field -->
+        <div class="col-md-6 form-group mb-4 border-bottom">
+          <label class="f-16 f-500 mb-2">Name:</label>
+          <div *ngIf="!isEditingFirstName" (click)="toggleEdit('isEditingFirstName')">
+            <b>{{ user.userDetails.name }}</b> <i class="ps-3 fa fa-pencil"></i>
+          </div>
+          <input
+            *ngIf="isEditingFirstName"
+            [(ngModel)]="user.userDetails.name"
+            name="name"
+            class="form-control"
+            type="text"
+            (blur)="toggleEdit('isEditingFirstName')"
+            autofocus
+          />
+        </div>
+
+        <!-- Email Field -->
+        <div class="col-md-6 form-group mb-4 border-bottom">
+          <label class="f-16 f-500 mb-2">Email:</label>
+          <div *ngIf="!isEditingEmail" (click)="toggleEdit('isEditingEmail')">
+            <b>{{ user.userDetails.email }}</b> <i class="ps-3 fa fa-pencil"></i>
+          </div>
+          <input
+            *ngIf="isEditingEmail"
+            [(ngModel)]="user.userDetails.email"
+            name="email"
+            class="form-control"
+            type="email"
+            (blur)="toggleEdit('isEditingEmail')"
+            autofocus
+          />
+        </div>
+
+        <!-- Phone Field -->
+        <div class="col-md-6 form-group mb-4 border-bottom">
+          <label class="f-16 f-500 mb-2">Phone:</label>
+          <div *ngIf="!isEditingPhone" (click)="toggleEdit('isEditingPhone')">
+            <b>{{ user.userDetails.phone }}</b> <i class="ps-3 fa fa-pencil"></i>
+          </div>
+          <input
+            *ngIf="isEditingPhone"
+            [(ngModel)]="user.userDetails.phone"
+            name="phone"
+            class="form-control"
+            type="text"
+            (blur)="toggleEdit('isEditingPhone')"
+            autofocus
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group mb-4 border-bottom">
+          <label class="f-16 f-500 mb-2">Password:</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter new password"
+          />
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group mb-4 border-bottom">
+          <label class="f-16 f-500 mb-2">Confirm Password:</label>
+          <input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            class="form-control"
+            placeholder="Confirm new password"
+          />
+          <div *ngIf="passwordMismatch" class="text-danger mt-2">Passwords do not match!</div>
+        </div>
+
+        <!-- Profile Photo Field -->
+        <div class="form-group mb-4">
+          <label class="f-16 f-500 mb-2">Profile Photo:</label>
+          <div class="mb-3">
+            <img
+              [src]="previewImage || (user.userDetails.image ? '/images/' + user.userDetails.image : '/images/profileimage.png')"
+              alt="Profile Photo"
+              style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;"
+            />
+          </div>
+          <input type="file" (change)="onFileChange($event)" class="form-control" />
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="btn btn-primary mt-5 align-self-center" style="width: 250px; border-radius: 20px;">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

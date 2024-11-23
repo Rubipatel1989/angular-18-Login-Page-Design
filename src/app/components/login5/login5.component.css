@@ -1,0 +1,172 @@
+/* Intro Animation */
+.outer-intro-ainimation{
+       background: url('/assets/images/bg/bg-3.jpg') no-repeat center center fixed;
+       background-size: cover;
+z-index: 1;
+
+}
+
+.intro-container {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       /*background-color: #E5E4E2; */
+       /* Background color for intro */
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       z-index: 10;
+       /* Above all other content */
+}
+
+.intro-logo {    
+       height: auto;
+       opacity: 0;
+}
+
+
+.bg-color-logo {
+       background-color: #D3D3D3;
+       border-top-left-radius: 8px;
+       border-bottom-left-radius: 8px;
+       width: 80%;
+       /* Reduced width */
+       max-width: 250px;
+       /* Ensures it's not too wide */
+       padding: 20px;
+       text-align: center;
+}
+
+/* Logo Image */
+.logo-image {
+       max-width: 100%;
+       height: auto;
+}
+
+/* Login Box */
+.bg-color-login {
+       height: 50vh;
+       width: 550px;
+       background-color: #71897e;
+       color: #fff;
+       border-top-right-radius: 8px;
+       border-bottom-right-radius: 8px;
+       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+       padding: 30px;
+}
+
+/* Form Fields */
+.form-control {
+       border: 1px solid #ccc;
+       border-radius: 4px;
+       padding: 12px;
+       transition: all 0.3s ease;
+}
+
+.form-control:focus {
+       border-color: #b8963c;
+       box-shadow: 0 0 5px rgba(184, 150, 60, 0.5);
+}
+
+/* Submit Button */
+.btn {
+       width: 100%;
+       background-color: #D3D3D3;
+       border: none;
+       color: white;
+       font-size: 20px;
+       font-weight: bold;
+       padding: 7px;
+       transition: transform 0.3s ease, background-color 0.3s ease;
+       border-radius: 4px;
+}
+
+.btn:hover {
+       transform: scale(1.05);
+       background-color: #FFF;
+       color: #595C5F;
+}
+
+
+
+/* Wave Animation */
+.wave-container {
+       position: absolute;
+       bottom: 0;
+       width: 100%;
+       overflow: hidden;
+       height: 150px;
+}
+
+.wave {
+       animation: moveWave 5s linear infinite;
+}
+
+@keyframes moveWave {
+       0% {
+              transform: translateX(0);
+       }
+
+       100% {
+              transform: translateX(-100%);
+       }
+}
+
+
+
+
+
+
+
+
+
+/* Floating Animation for Center Login Box */
+.floating-animation {
+       animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+       0% {
+              transform: translateY(0);
+       }
+
+       50% {
+              transform: translateY(-10px);
+       }
+
+       100% {
+              transform: translateY(0);
+       }
+}
+
+/* Glowing Animated Text on Top */
+.animated-title {
+       text-align: center;
+       font-size: 2rem;
+       color: #000;
+       text-shadow: 0 0 50px #fff, 0 0 10px #fff, 0 0 20px #D3D3D3, 0 0 30px #b8963c, 0 0 40px #f4d03f;
+       animation: glow 3s ease-in-out infinite;
+       margin-bottom: 20px;
+}
+
+@keyframes glow {
+       0% {
+              text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #D3D3D3, 0 0 30px #b8963c, 0 0 40px #f4d03f;
+       }
+
+       50% {
+              text-shadow: 0 0 10px #fff, 0 0 20px #f4d03f, 0 0 30px #D3D3D3, 0 0 40px #b8963c, 0 0 50px #f4d03f;
+       }
+
+       100% {
+              text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #D3D3D3, 0 0 30px #b8963c, 0 0 40px #f4d03f;
+       }
+}
+
+/* Smooth Hover Animation for Input Fields */
+.input-group:hover .form-control {
+       transform: scale(1.05);
+       transition: transform 0.3s ease;
+}

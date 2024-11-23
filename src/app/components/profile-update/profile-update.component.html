@@ -1,0 +1,161 @@
+<div class="container mt-5">
+  <div class="row shadow p-4">
+    <!-- Role Row -->
+    <div class="col-12 text-center mb-4 mt-5">
+      <label class="f-20 f-500">
+       <h4> Role : {{ user.userDetails.role === 0 ? "Admin" : "Provider" }}</h4>
+      </label>
+    </div>
+
+    <!-- Profile Grid -->
+    <div class="row">
+      <!-- Left Side: Profile Photo -->
+      <div
+        class="col-12 col-md-4 d-flex flex-column align-items-center"
+        #imageContainer
+      >
+        <div class="mb-3">
+          <img
+            [src]="imagePreview || '/assets/images/default-profile.png'"
+            alt="Profile Photo"
+            style="
+              width: 150px;
+              height: 150px;
+              object-fit: cover;
+              border-radius: 50%;
+            "
+          />
+        </div>
+        <input type="file" (change)="onFileChange($event)" class="form-control" />
+      </div>
+
+      <!-- Right Side: Profile Details -->
+      <div class="col-12 col-md-8">
+        <div #formContainer>
+          <form
+            (ngSubmit)="onUpdate()"
+            #profileForm="ngForm"
+            class="d-flex flex-column"
+          >
+            <!-- Name Field -->
+            <div class="form-group">
+              <input
+                [(ngModel)]="profileObj.name"
+                name="name"
+                class="form-control"
+                type="text"
+                placeholder="Enter Name"
+                #name="ngModel"
+                required
+                minlength="5"
+              />
+              <div class="text-danger" *ngIf="name.invalid && name.touched">
+                <span *ngIf="name.errors?.['required']">This is required</span>
+                <span *ngIf="name.errors?.['minlength']"
+                  >Minimum 5 characters required</span
+                >
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group mt-5">
+              <input
+                [(ngModel)]="profileObj.email"
+                name="email"
+                class="form-control"
+                type="email"
+                placeholder="Enter Email"
+                required
+              />
+              <div class="text-danger" *ngIf="name.invalid && name.touched">
+                <span *ngIf="name.errors?.['required']">This is required</span>
+                <span *ngIf="name.errors?.['minlength']"
+                  >Minimum 5 characters required</span
+                >
+              </div>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group mt-5">
+              <input
+                [(ngModel)]="profileObj.phone"
+                name="phone"
+                class="form-control"
+                type="text"
+                placeholder="Enter Phone"
+                #phone="ngModel"
+                required
+              />
+              <div class="text-danger" *ngIf="phone.invalid && phone.touched">
+                <span *ngIf="phone.errors?.['required']">Phone is required.</span>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group mt-5">
+              <input
+                [(ngModel)]="profileObj.password"
+                name="password"
+                class="form-control"
+                type="password"
+                placeholder="Enter New Password"
+                #password="ngModel"
+                required
+                minlength="8"
+              />
+              <div
+                class="text-danger"
+                *ngIf="password.invalid && password.touched"
+              >
+                <span *ngIf="password.errors?.['required']"
+                  >Password is required.</span
+                >
+                <span *ngIf="password.errors?.['minlength']"
+                  >Minimum 6 characters required.</span
+                >
+              </div>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group mt-5">
+              <input
+                [(ngModel)]="profileObj.confirmPassword"
+                name="confirmPassword"
+                class="form-control"
+                type="password"
+                placeholder="Confirm Password"
+                #confirmPassword="ngModel"
+                required
+              />
+              <div
+                class="text-danger"
+                *ngIf="confirmPassword.invalid && confirmPassword.touched"
+              >
+                <span *ngIf="confirmPassword.errors?.['required']"
+                  >Confirm Password is required.</span
+                >
+              </div>
+            </div>
+
+            <div class="mt-5 mb-5">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="profileForm.invalid"
+              >
+                Update
+              </button>
+            </div>
+          </form>
+
+          <div *ngIf="successMessage" class="alert alert-success mt-5">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger mt-5">
+            {{ errorMessage }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

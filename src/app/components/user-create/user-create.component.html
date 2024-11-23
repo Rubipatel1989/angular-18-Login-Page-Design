@@ -1,0 +1,175 @@
+<div
+  class="d-flex justify-content-center align-items-center vh-100"
+>
+  <div class="p-5 m-4 col-12 col-sm-8 shadow card" style="max-width: 800px;">
+    <form (ngSubmit)="submitForm()" #userCreateForm="ngForm" class="row">
+      <!-- Profile Image Column -->
+      <div class="col-md-4 text-center">
+        <label class="f-16 f-500 mb-2">Profile Image</label>
+        <div class="mb-3">
+          <img
+            [src]="previewImage || '/images/profileimage.png'"
+            alt="Profile Image"
+            style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"
+          />
+        </div>
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          class="form-control"
+        />
+      </div>
+
+      <!-- Form Fields Column -->
+      <div class="col-md-8">
+        <div class="row">
+          <!-- First Name -->
+          <div class="col-md-6 form-group mb-4">
+            <label class="f-16 f-500 mb-2">First Name</label>
+            <input
+              [(ngModel)]="formData.firstName"
+              name="firstName"
+              type="text"
+              class="form-control"
+              placeholder="Enter First Name"
+              required
+              minlength="2"
+              maxlength="100"
+              #firstName="ngModel"
+            />
+            <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+              <small *ngIf="firstName.errors?.['required']">First name is required.</small>
+              <small *ngIf="firstName.errors?.['minlength']">Minimum 2 characters required.</small>
+              <small *ngIf="firstName.errors?.['maxlength']">Maximum 100 characters allowed.</small>
+            </div>
+          </div>
+
+          <!-- Last Name -->
+          <div class="col-md-6 form-group mb-4">
+            <label class="f-16 f-500 mb-2">Last Name</label>
+            <input
+              [(ngModel)]="formData.lastName"
+              name="lastName"
+              type="text"
+              class="form-control"
+              placeholder="Enter Last Name"
+              required
+              minlength="2"
+              maxlength="100"
+              #lastName="ngModel"
+            />
+            <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+              <small *ngIf="lastName.errors?.['required']">Last name is required.</small>
+              <small *ngIf="lastName.errors?.['minlength']">Minimum 2 characters required.</small>
+              <small *ngIf="lastName.errors?.['maxlength']">Maximum 100 characters allowed.</small>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-12 form-group mb-4">
+            <label class="f-16 f-500 mb-2">Email</label>
+            <input
+              [(ngModel)]="formData.email"
+              name="email"
+              type="email"
+              class="form-control"
+              placeholder="Enter Email Address"
+              required
+              email
+              #email="ngModel"
+            />
+            <div *ngIf="email.invalid && email.touched" class="text-danger">
+              <small *ngIf="email.errors?.['required']">Email is required.</small>
+              <small *ngIf="email.errors?.['email']">Invalid email format.</small>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="col-md-12 form-group mb-4">
+            <label class="f-16 f-500 mb-2">Phone</label>
+            <input
+              [(ngModel)]="formData.phone"
+              name="phone"
+              type="text"
+              class="form-control"
+              placeholder="Enter Phone Number"
+              required
+              pattern="^\+?[0-9]{7,15}$"
+              #phone="ngModel"
+            />
+            <div *ngIf="phone.invalid && phone.touched" class="text-danger">
+              <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
+              <small *ngIf="phone.errors?.['pattern']">Invalid phone number format.</small>
+            </div>
+          </div>
+
+          <!-- Add Role -->
+          <div class="col-md-12 form-group mb-4">
+            <label class="f-16 f-500 mb-2">Add Role</label>
+            <select
+              [(ngModel)]="formData.role"
+              name="role"
+              class="form-control"
+              required
+              #role="ngModel"
+            >
+              <option value="" disabled>Select Role</option>
+              <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+            </select>
+            <div *ngIf="role.invalid && role.touched" class="text-danger">
+              <small>Role selection is required.</small>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="col-md-6 form-group mb-4">
+            <label class="f-16 f-500 mb-2">Password</label>
+            <input
+              [(ngModel)]="formData.password"
+              name="password"
+              type="password"
+              class="form-control"
+              placeholder="Enter Password"
+              required
+              minlength="6"
+              #password="ngModel"
+            />
+            <div *ngIf="password.invalid && password.touched" class="text-danger">
+              <small *ngIf="password.errors?.['required']">Password is required.</small>
+              <small *ngIf="password.errors?.['minlength']">Minimum 6 characters required.</small>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="col-md-6 form-group mb-4">
+            <label class="f-16 f-500 mb-2">Confirm Password</label>
+            <input
+              [(ngModel)]="formData.confirmPassword"
+              name="confirmPassword"
+              type="password"
+              class="form-control"
+              placeholder="Re-enter Password"
+              required
+              #confirmPassword="ngModel"
+            />
+            <div *ngIf="passwordMismatch && confirmPassword.touched" class="text-danger">
+              <small>Passwords do not match.</small>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-md-12 text-end">
+            <button
+              type="submit"
+              class="btn btn-primary mt-4"
+              style="width: 150px; border-radius: 20px;"
+              [disabled]="userCreateForm.invalid"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

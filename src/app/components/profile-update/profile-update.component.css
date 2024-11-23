@@ -1,0 +1,36 @@
+/* register.component.css */
+.container {
+       max-width: 750px;
+       margin: auto;
+       padding: 20px;
+       border-radius: 8px;
+     }
+     
+     h2 {
+       text-align: center;
+       color: #343a40;
+     }
+     
+     .form-group label {
+       color: #495057;
+     }
+     
+     .form-control {
+       border-radius: 4px;
+     }
+     
+     .btn {
+       width: 150px;
+     }
+     img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    
